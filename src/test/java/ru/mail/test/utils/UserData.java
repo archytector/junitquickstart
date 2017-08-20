@@ -16,7 +16,7 @@ import static java.util.stream.Collectors.toSet;
  */
 public class UserData {
 
-    private static final String FILENAME = "";
+    private static final String FILE_NAME = "src/test/resourses/test_logins.txt";
 
     public enum EnumSingleton {
         INSTANCE();
@@ -24,12 +24,12 @@ public class UserData {
         private final LinkedBlockingQueue<LoginPassword> usersData = new LinkedBlockingQueue<>();
 
         EnumSingleton() {
-            File file = new File("src/test/resourses/test_logins.txt");
+            File file = new File(FILE_NAME);
             try {
                 List<String> lines = FileUtils.readLines(file, "UTF-8");
                 usersData.addAll(lines.stream()
                     .map(s -> {
-                        String[] loginPasswordPair = s.split(" ");
+                        String[] loginPasswordPair = s.split(" +");
                         return new LoginPassword(loginPasswordPair[0], loginPasswordPair[1]);
                     })
                     .collect(toSet()));
