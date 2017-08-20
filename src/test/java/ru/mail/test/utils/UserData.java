@@ -1,8 +1,14 @@
 package ru.mail.test.utils;
 
 import lombok.Data;
+import org.apache.commons.io.FileUtils;
 
-import java.util.HashMap;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.ConcurrentSkipListSet;
+
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Created by olga on 19.08.17.
@@ -14,38 +20,40 @@ public class UserData {
     public enum EnumSingleton {
         INSTANCE();
 
-        private final HashMap<String, String> usersData;
+        private ConcurrentSkipListSet<LoginPassword> usersData = new ConcurrentSkipListSet<>();
 
-        private EnumSingleton() {
-            usersData = new HashMap<>();
-//            BufferedReader in = null;
-//            try {
-//                in = new BufferedReader(new InputStreamReader(new FileInputStream(FILENAME)));
-//                String str = null;
-//                while ((str = in.readLine()) != null) {
-//                    //TODO check format Preconditions
-//                    String arr[] = str.split(" ");
-//                    usersData.put(arr[0], arr[1]);
-//                    //TODO add logins to set
-//                }
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-
-
-
+        EnumSingleton() {
+            File file = new File("src/test/resourses/test_logins.txt");
+            try {
+                List<String> lines = FileUtils.readLines(file, "UTF-8");
+                usersData.addAll(lines.stream()
+                    .map(s -> {
+                        String[] loginPasswordPair = s.split(" ");
+                        return new LoginPassword(loginPasswordPair[0], loginPasswordPair[1]);
+                    })
+                    .collect(toSet()));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         public LoginPassword getNextLoginPassword() {
-            return null;
+            return usersData.pollFirst();
         }
 
-        public void freeLoginPasword(LoginPassword lp) {
-
+        public void freeLoginPasword(LoginPassword loginPassword) {
+            usersData.add(loginPassword);
         }
     }
 
     @Data
-    class LoginPassword {
+    public static class LoginPassword implements Comparable<LoginPassword>{
+        private final String login;
+        private final String password;
 
+        @Override
+        public int compareTo(LoginPassword loginPassword) {
+            return this.hashCode() - loginPassword.hashCode();
+        }
     }
 }

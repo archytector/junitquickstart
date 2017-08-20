@@ -9,6 +9,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import ru.mail.test.steps.PrepareSteps;
+import ru.mail.test.utils.UserData;
+
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -18,18 +21,13 @@ import ru.mail.test.steps.PrepareSteps;
 public class LetterDeleteSettingTest {
 
     @Managed()
-    public WebDriver webdriver;
+    private WebDriver webdriver;
     @Steps
-    public PrepareSteps prepareSteps;
-    String email;
-    //UserData.LoginPassword currentLoginPassword;
-    String password;
+    private PrepareSteps prepareSteps;
 
     @Before
     public void prepareData() {
         webdriver.get("https://mail.ru");
-        email = "emili_k@bk.ru";
-        password = "18101964Olga";
     }
 
     @Test
@@ -39,9 +37,26 @@ public class LetterDeleteSettingTest {
 
     @Test
     @Title("Проверка функциональности После удаления письма - Переходить к следующему письму")
-    public void edit_lastname2() {
-        prepareSteps.login(email, password);
+    public void edit_lastname2() throws InterruptedException {
+        UserData.LoginPassword currentLoginPassword = UserData.EnumSingleton.INSTANCE.getNextLoginPassword();
+        try {
+            prepareSteps.login(currentLoginPassword.getLogin(), currentLoginPassword.getPassword());
+            TimeUnit.SECONDS.sleep(20);
+        } finally {
+            UserData.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
+        }
     }
 
+    @Test
+    @Title("Проверка функциональности После удаления письма - Переходить к следующему письму")
+    public void edit_lastname3() throws InterruptedException {
+        UserData.LoginPassword currentLoginPassword = UserData.EnumSingleton.INSTANCE.getNextLoginPassword();
+        try {
+            prepareSteps.login(currentLoginPassword.getLogin(), currentLoginPassword.getPassword());
+            TimeUnit.SECONDS.sleep(20);
+        } finally {
+            UserData.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
+        }
+    }
 
 }
