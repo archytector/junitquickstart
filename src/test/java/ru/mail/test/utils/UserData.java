@@ -6,7 +6,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.concurrent.ArrayBlockingQueue;
 
 import static java.util.stream.Collectors.toSet;
 
@@ -20,12 +20,13 @@ public class UserData {
     public enum EnumSingleton {
         INSTANCE();
 
-        private ConcurrentSkipListSet<LoginPassword> usersData = new ConcurrentSkipListSet<>();
+        private final ArrayBlockingQueue<LoginPassword> usersData;
 
         EnumSingleton() {
             File file = new File("src/test/resourses/test_logins.txt");
             try {
                 List<String> lines = FileUtils.readLines(file, "UTF-8");
+                usersData = new ArrayBlockingQueue<>(lines.size());
                 usersData.addAll(lines.stream()
                     .map(s -> {
                         String[] loginPasswordPair = s.split(" ");
@@ -37,8 +38,8 @@ public class UserData {
             }
         }
 
-        public LoginPassword getNextLoginPassword() {
-            return usersData.pollFirst();
+        public LoginPassword getNextLoginPassword() throws InterruptedException {
+            return usersData.take();
         }
 
         public void freeLoginPasword(LoginPassword loginPassword) {

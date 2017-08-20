@@ -11,8 +11,6 @@ import org.openqa.selenium.WebDriver;
 import ru.mail.test.steps.PrepareSteps;
 import ru.mail.test.utils.UserData;
 
-import java.util.concurrent.TimeUnit;
-
 
 /**
  * Created by olga on 19.08.17.
@@ -41,7 +39,6 @@ public class LetterDeleteSettingTest {
         UserData.LoginPassword currentLoginPassword = UserData.EnumSingleton.INSTANCE.getNextLoginPassword();
         try {
             prepareSteps.login(currentLoginPassword.getLogin(), currentLoginPassword.getPassword());
-            TimeUnit.SECONDS.sleep(20);
         } finally {
             UserData.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
         }
@@ -53,10 +50,8 @@ public class LetterDeleteSettingTest {
         UserData.LoginPassword currentLoginPassword = UserData.EnumSingleton.INSTANCE.getNextLoginPassword();
         try {
             prepareSteps.login(currentLoginPassword.getLogin(), currentLoginPassword.getPassword());
-            TimeUnit.SECONDS.sleep(20);
         } finally {
             UserData.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
         }
     }
-
 }
