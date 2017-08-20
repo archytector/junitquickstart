@@ -6,7 +6,8 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 import static java.util.stream.Collectors.toSet;
 
@@ -20,13 +21,12 @@ public class UserData {
     public enum EnumSingleton {
         INSTANCE();
 
-        private final ArrayBlockingQueue<LoginPassword> usersData;
+        private final LinkedBlockingQueue<LoginPassword> usersData = new LinkedBlockingQueue<>();
 
         EnumSingleton() {
             File file = new File("src/test/resourses/test_logins.txt");
             try {
                 List<String> lines = FileUtils.readLines(file, "UTF-8");
-                usersData = new ArrayBlockingQueue<>(lines.size());
                 usersData.addAll(lines.stream()
                     .map(s -> {
                         String[] loginPasswordPair = s.split(" ");
@@ -39,7 +39,7 @@ public class UserData {
         }
 
         public LoginPassword getNextLoginPassword() throws InterruptedException {
-            return usersData.take();
+            return usersData.poll(30, TimeUnit.SECONDS);
         }
 
         public void freeLoginPasword(LoginPassword loginPassword) {
