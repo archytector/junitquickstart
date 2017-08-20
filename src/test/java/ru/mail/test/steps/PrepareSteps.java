@@ -1,7 +1,7 @@
-package steps;
+package ru.mail.test.steps;
 
-import pages.CommonElenentsPage;
-import pages.LoginPage;
+import ru.mail.test.pages.CommonElenentsPage;
+import ru.mail.test.pages.LoginPage;
 import net.thucydides.core.annotations.Step;
 
 /**

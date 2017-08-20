@@ -1,4 +1,4 @@
-package utils;
+package ru.mail.test.utils;
 
 import lombok.Data;
 
