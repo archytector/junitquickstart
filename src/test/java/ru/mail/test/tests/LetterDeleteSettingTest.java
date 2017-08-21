@@ -36,6 +36,8 @@ public class LetterDeleteSettingTest {
             prepareSteps.login(currentLoginPassword.getLogin(), currentLoginPassword.getPassword());
             prepareSteps.openSettingsPage();
             prepareSteps.openLetterSettingsPage();
+
+
         } finally {
             UserData.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
         }

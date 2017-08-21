@@ -1,10 +1,9 @@
 package ru.mail.test.steps;
 
-import org.junit.Assert;
+import net.thucydides.core.annotations.Step;
 import ru.mail.test.pages.CommonElenentsPage;
 import ru.mail.test.pages.LetterSettingPage;
 import ru.mail.test.pages.LoginPage;
-import net.thucydides.core.annotations.Step;
 import ru.mail.test.pages.SettingsPage;
 
 /**
@@ -18,7 +17,7 @@ public class PrepareSteps {
     LetterSettingPage letterSettingPage;
 
     @Step("Авторизация")
-    public void login(String email,String password) {
+    public void login(String email, String password) {
         loginPage.enterEmail(email);
         loginPage.enterPassword(password);
         loginPage.pressEnterBtn();
@@ -34,7 +33,7 @@ public class PrepareSteps {
     @Step("Открытие страницы Работа с письмами")
     public void openLetterSettingsPage() {
         settingsPage.pressWorkWithLettersBtn();
-
+        letterSettingPage.checkLetterSettingsPageOpened();
     }
 
 }
