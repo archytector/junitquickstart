@@ -30,7 +30,7 @@ public class LetterSettingPage extends PageObject {
     }
 
     public void checkLetterSettingsPageOpened() {
-        Assert.assertTrue("Не открыта страница 'Работа с письмами'", letterSettingsForm.isCurrentlyVisible());
+        Assert.assertTrue("Не открыта страница 'Работа с письмами'", letterSettingsForm.waitUntilVisible().isCurrentlyVisible());
     }
 
     public void pressSaveBtn() {

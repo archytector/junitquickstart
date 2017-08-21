@@ -29,7 +29,7 @@ public class MainMailPage extends PageObject {
     private String letterHeader;
 
     public void checkMainMailPageOpened() {
-        Assert.assertTrue("Не открыта страница 'Работа с письмами'", lettersInList.isCurrentlyVisible());
+        Assert.assertTrue("Не открыта страница со списком писем", lettersInList.waitUntilVisible().isCurrentlyVisible());
     }
 
     public void rememberLetterHeader(int letterNumber) {

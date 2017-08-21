@@ -31,16 +31,14 @@ public class LetterDeleteSettingTest {
     private CheckLetterDeleteSettingsSteps checkLetterDeleteSettingsSteps;
 
 
-    @Before
-    public void prepareData() {
-        webdriver.get("https://mail.ru");
-    }
 
     @Test
     @Title("Проверка функциональности 'После удаления письма - Переходить к следующему письму'")
     public void checkDeleteLetterOptions1() throws InterruptedException {
         UserData.LoginPassword currentLoginPassword = UserData.EnumSingleton.INSTANCE.getNextLoginPassword();
         try {
+
+            webdriver.get("https://mail.ru");
             prepareSteps.login(currentLoginPassword.getLogin(), currentLoginPassword.getPassword());
             prepareSteps.openSettingsPage();
             prepareSteps.openLetterSettingsPage();
@@ -57,11 +55,12 @@ public class LetterDeleteSettingTest {
         }
     }
 
-        @Test
+    @Test
     @Title("Проверка функциональности 'После удаления письма - Переходить к списку писем'")
     public void checkDeleteLetterOptions2() throws InterruptedException {
         UserData.LoginPassword currentLoginPassword = UserData.EnumSingleton.INSTANCE.getNextLoginPassword();
         try {
+            webdriver.get("https://mail.ru");
             prepareSteps.login(currentLoginPassword.getLogin(), currentLoginPassword.getPassword());
             prepareSteps.openSettingsPage();
             prepareSteps.openLetterSettingsPage();

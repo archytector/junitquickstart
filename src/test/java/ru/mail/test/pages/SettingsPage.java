@@ -22,7 +22,7 @@ public class SettingsPage extends PageObject {
     }
 
     public void checkSettingsPageOpened() {
-        Assert.assertTrue("Не открыта страница 'Настройки'", allSettingsMenu.isCurrentlyVisible());
+        Assert.assertTrue("Не открыта страница 'Настройки'", allSettingsMenu.waitUntilVisible().isCurrentlyVisible());
     }
 
 
