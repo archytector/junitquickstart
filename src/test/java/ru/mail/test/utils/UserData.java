@@ -16,15 +16,13 @@ import static java.util.stream.Collectors.toSet;
  */
 public class UserData {
 
-    private static final String FILE_NAME = "src/test/resourses/test_logins.txt";
-    private static final int WAIT_TIME_IN_MINUTES = 2;
     public enum EnumSingleton {
         INSTANCE();
 
         private final LinkedBlockingQueue<LoginPassword> usersData = new LinkedBlockingQueue<>();
 
         EnumSingleton() {
-            File file = new File(FILE_NAME);
+            File file = new File(Constants.FILE_NAME);
             try {
                 List<String> lines = FileUtils.readLines(file, "UTF-8");
                 usersData.addAll(lines.stream()
@@ -40,7 +38,7 @@ public class UserData {
 
         public LoginPassword getNextLoginPassword() throws InterruptedException {
             LoginPassword loginPassword;
-            while((loginPassword=usersData.poll(WAIT_TIME_IN_MINUTES, TimeUnit.MINUTES)) == null){}
+            while((loginPassword=usersData.poll(Constants.WAIT_TIME_IN_MINUTES, TimeUnit.MINUTES)) == null){}
             return loginPassword;
         }
 

@@ -12,8 +12,6 @@ public class CheckLetterDeleteSettingsSteps {
     CommonElenentsPage commonElenentsPage;
     MainMailPage mainMailPage;
 
-
-
     @Step("Переход на страницу со списком писем")
     public void openMainMailPage() {
         commonElenentsPage.pressLetterBtn();
