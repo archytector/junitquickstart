@@ -30,17 +30,16 @@ public class LetterDeleteSettingTest {
 
     @Test
     @Title("Проверка функциональности После удаления письма - Переходить к следующему письму")
-    public void edit_lastname() {
-    }
-
-    @Test
-    @Title("Проверка функциональности После удаления письма - Переходить к следующему письму")
-    public void edit_lastname2() throws InterruptedException {
+    public void checkDeleteLetterOptions() throws InterruptedException {
         UserData.LoginPassword currentLoginPassword = UserData.EnumSingleton.INSTANCE.getNextLoginPassword();
         try {
             prepareSteps.login(currentLoginPassword.getLogin(), currentLoginPassword.getPassword());
+            prepareSteps.openSettingsPage();
+            prepareSteps.openLetterSettingsPage();
         } finally {
             UserData.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
         }
     }
+
+
 }

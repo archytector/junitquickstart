@@ -8,30 +8,30 @@ import net.thucydides.core.annotations.DefaultUrl;
 /**
  * Created by olga on 19.08.17.
  */
-@DefaultUrl("https://mail.ru")
+
 public class LoginPage extends PageObject {
 
     @FindBy(id="mailbox__login")
-    private WebElementFacade email;
+    private WebElementFacade loginInput;
 
     @FindBy(id="mailbox__password")
-    private WebElementFacade password;
+    private WebElementFacade passwordInput;
 
     @FindBy(id="mailbox__auth__button")
-    private WebElementFacade enterBtn;
+    private WebElementFacade authButton;
 
 
     public void enterEmail(String emailFromFile) {
-        email.waitUntilVisible().clear();
-        email.sendKeys(emailFromFile);
+        loginInput.waitUntilVisible().clear();
+        loginInput.sendKeys(emailFromFile);
     }
 
     public void enterPassword(String passwordFromFile) {
-        password.waitUntilVisible().clear();
-        password.sendKeys(passwordFromFile);
+        passwordInput.waitUntilVisible().clear();
+        passwordInput.sendKeys(passwordFromFile);
     }
 
     public void pressEnterBtn() {
-        enterBtn.waitUntilClickable().click();
+        authButton.waitUntilClickable().click();
     }
 }

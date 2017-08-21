@@ -3,6 +3,7 @@ package ru.mail.test.pages;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.junit.Assert;
 
 /**
  * Created by olga on 19.08.17.
@@ -10,27 +11,19 @@ import net.serenitybdd.core.pages.WebElementFacade;
 
 public class SettingsPage extends PageObject {
 
-    @FindBy(id="mailbox__login")
-    private WebElementFacade email;
+    @FindBy(id = "content-index")
+    private WebElementFacade allSettingsMenu;
 
-    @FindBy(id="mailbox__password")
-    private WebElementFacade password;
+    @FindBy(xpath = ".//*[@id='content-index']//div[text()='Работа с письмами']")
+    private WebElementFacade workWithLettersItem;
 
-    @FindBy(id="mailbox__auth__button")
-    private WebElementFacade enterBtn;
-
-
-    public void enterEmail(String emailFromFile) {
-        email.waitUntilVisible().clear();
-        email.sendKeys(emailFromFile);
+    public void pressWorkWithLettersBtn() {
+        workWithLettersItem.waitUntilClickable().click();
     }
 
-    public void enterPassword(String passwordFromFile) {
-        password.waitUntilVisible().clear();
-        password.sendKeys(passwordFromFile);
+    public void checkSettingsPageOpened() {
+        Assert.assertTrue("Не открыта страница 'Настройки'", allSettingsMenu.isCurrentlyVisible());
     }
 
-    public void pressEnterBtn() {
-        enterBtn.waitUntilClickable().click();
-    }
+
 }

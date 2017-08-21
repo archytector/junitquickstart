@@ -6,7 +6,7 @@ import net.thucydides.core.annotations.Step;
 /**
  * Created by olga on 19.08.17.
  */
-public class OpenLatterSettingsSteps {
+public class LatterSettingsSteps {
 
     CommonElenentsPage commonElenentsPage;
 
@@ -15,5 +15,7 @@ public class OpenLatterSettingsSteps {
         commonElenentsPage.pressEnterBtn();
         commonElenentsPage.pressSettingsBtn();
     }
+
+
 
 }
