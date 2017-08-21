@@ -41,12 +41,12 @@ public class MainMailPage extends PageObject {
     public void deleteLetter(int letterNumber) {
         lettersInList.findElement(By.cssSelector("div:nth-child(" + letterNumber + ")> div > a")).click();
         deleteButton.waitUntilClickable().click();
-        waitFor(answerButton);
     }
 
     public void checkAfterDeleteOption(String option) {
         switch (option) {
             case "view next letter":
+                waitFor(answerButton);
                 Assert.assertEquals(letterHeader.replace(" ",""), letterHeaderText.getText().replace(" ",""));
                 break;
             case "view list letters":

@@ -20,7 +20,7 @@ import ru.mail.test.utils.UserData;
 @RunWith(SerenityRunner.class)
 public class LetterDeleteSettingTest {
 
-    @Managed()
+    @Managed(uniqueSession = true)
     private WebDriver webdriver;
 
     @Steps
@@ -32,28 +32,7 @@ public class LetterDeleteSettingTest {
 
 
 
-    @Test
-    @Title("Проверка функциональности 'После удаления письма - Переходить к следующему письму'")
-    public void checkDeleteLetterOptions1() throws InterruptedException {
-        UserData.LoginPassword currentLoginPassword = UserData.EnumSingleton.INSTANCE.getNextLoginPassword();
-        try {
 
-            webdriver.get("https://mail.ru");
-            prepareSteps.login(currentLoginPassword.getLogin(), currentLoginPassword.getPassword());
-            prepareSteps.openSettingsPage();
-            prepareSteps.openLetterSettingsPage();
-
-            latterSettingsSteps.chooseGoToNextLetterCheckbox();
-            latterSettingsSteps.saveChanges();
-
-            checkLetterDeleteSettingsSteps.openMainMailPage();
-            checkLetterDeleteSettingsSteps.deleteLetterNumber(1);
-            checkLetterDeleteSettingsSteps.checkAfterDeleteViewNextLetter();
-
-        } finally {
-            UserData.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
-        }
-    }
 
     @Test
     @Title("Проверка функциональности 'После удаления письма - Переходить к списку писем'")
@@ -76,6 +55,29 @@ public class LetterDeleteSettingTest {
             UserData.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
         }
     }
+
+    @Test
+    @Title("Проверка функциональности 'После удаления письма - Переходить к следующему письму'")
+    public void checkDeleteLetterOptions1() throws InterruptedException {
+        UserData.LoginPassword currentLoginPassword = UserData.EnumSingleton.INSTANCE.getNextLoginPassword();
+        try {
+            webdriver.get("https://mail.ru");
+            prepareSteps.login(currentLoginPassword.getLogin(), currentLoginPassword.getPassword());
+            prepareSteps.openSettingsPage();
+            prepareSteps.openLetterSettingsPage();
+
+            latterSettingsSteps.chooseGoToNextLetterCheckbox();
+            latterSettingsSteps.saveChanges();
+
+            checkLetterDeleteSettingsSteps.openMainMailPage();
+            checkLetterDeleteSettingsSteps.deleteLetterNumber(1);
+            checkLetterDeleteSettingsSteps.checkAfterDeleteViewNextLetter();
+
+        } finally {
+            UserData.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
+        }
+    }
+
 
 
 }
