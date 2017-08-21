@@ -17,7 +17,7 @@ import static java.util.stream.Collectors.toSet;
 public class UserData {
 
     private static final String FILE_NAME = "src/test/resourses/test_logins.txt";
-    private static final int WAIT_TIME = 30;
+    private static final int WAIT_TIME = 60;
     public enum EnumSingleton {
         INSTANCE();
 

@@ -23,14 +23,14 @@ public class PrepareSteps {
         loginPage.pressEnterBtn();
     }
 
-    @Step("Открытие страницы настроек")
+    @Step("Открыта страница настроек")
     public void openSettingsPage() {
         commonElenentsPage.pressEnterBtn();
         commonElenentsPage.pressSettingsBtn();
         settingsPage.checkSettingsPageOpened();
     }
 
-    @Step("Открытие страницы Работа с письмами")
+    @Step("Открыта страница 'Работа с письмами'")
     public void openLetterSettingsPage() {
         settingsPage.pressWorkWithLettersBtn();
         letterSettingPage.checkLetterSettingsPageOpened();

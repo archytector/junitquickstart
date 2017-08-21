@@ -8,25 +8,36 @@ import org.junit.Assert;
 /**
  * Created by olga on 21.08.17.
  */
-public class LetterSettingPage extends PageObject{
+public class LetterSettingPage extends PageObject {
     @FindBy(id = "formMail")
     private WebElementFacade letterSettingsForm;
 
     @FindBy(id = "afterDelete0")
     private WebElementFacade goToNextLetterCheckbox;
 
-    @FindBy(css = "#afterDelete1")
+    @FindBy(id = "afterDelete1")
     private WebElementFacade goToLettersListCheckbox;
 
-    public void chooseGoToNextLetterCheckbox(){
+    @FindBy(css = "#formMail button[type='submit']")
+    private WebElementFacade saveButton;
 
-
+    public void clickGoToNextLetterCheckbox() {
+        goToNextLetterCheckbox.waitUntilClickable().click();
     }
 
+    public void clickGoToLettersListCheckbox() {
+        goToLettersListCheckbox.waitUntilClickable().click();
+    }
 
     public void checkLetterSettingsPageOpened() {
-        Assert.assertTrue("Не открыта страница 'Настройки'", letterSettingsForm.isCurrentlyVisible());
+        Assert.assertTrue("Не открыта страница 'Работа с письмами'", letterSettingsForm.isCurrentlyVisible());
     }
+
+    public void pressSaveBtn() {
+        saveButton.waitUntilClickable().click();
+    }
+
+
 
 
 }

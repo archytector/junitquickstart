@@ -19,8 +19,8 @@
         <serenity.maven.version>1.5.3</serenity.maven.version>
         <!--<webdriver.driver>firefox</webdriver.driver>-->
         <!--<webdriver.firefox.driver>geckodriver</webdriver.firefox.driver>-->
-        <surefire.rerunFailingTestsCount>1</surefire.rerunFailingTestsCount>
-        <surefire.forkNumber>1</surefire.forkNumber>
+        <!--<surefire.rerunFailingTestsCount>1</surefire.rerunFailingTestsCount>-->
+        <!--<surefire.forkNumber>1</surefire.forkNumber>-->
     </properties>
 
     <dependencies>

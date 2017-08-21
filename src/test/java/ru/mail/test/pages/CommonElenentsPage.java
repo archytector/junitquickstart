@@ -32,6 +32,10 @@ public class CommonElenentsPage extends PageObject {
         settingsToolbarItem.waitUntilClickable().click();
     }
 
+    public void pressLetterBtn() {
+        lettersToolbarButton.waitUntilClickable().click();
+    }
+
 
 
 }
