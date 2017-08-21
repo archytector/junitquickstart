@@ -57,7 +57,7 @@ public class LetterDeleteSettingTest {
         }
     }
 
-        @Test
+    @Test
     @Title("Проверка функциональности 'После удаления письма - Переходить к списку писем'")
     public void checkDeleteLetterOptions2() throws InterruptedException {
         UserData.LoginPassword currentLoginPassword = UserData.EnumSingleton.INSTANCE.getNextLoginPassword();
