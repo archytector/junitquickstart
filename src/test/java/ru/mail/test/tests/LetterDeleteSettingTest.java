@@ -4,7 +4,6 @@ import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.Title;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +19,7 @@ import ru.mail.test.utils.UserData;
 @RunWith(SerenityRunner.class)
 public class LetterDeleteSettingTest {
 
-    @Managed()
+    @Managed(uniqueSession = true)
     private WebDriver webdriver;
 
     @Steps
@@ -31,13 +30,11 @@ public class LetterDeleteSettingTest {
     private CheckLetterDeleteSettingsSteps checkLetterDeleteSettingsSteps;
 
 
-
     @Test
     @Title("Проверка функциональности 'После удаления письма - Переходить к следующему письму'")
     public void checkDeleteLetterOptions1() throws InterruptedException {
         UserData.LoginPassword currentLoginPassword = UserData.EnumSingleton.INSTANCE.getNextLoginPassword();
         try {
-
             webdriver.get("https://mail.ru");
             prepareSteps.login(currentLoginPassword.getLogin(), currentLoginPassword.getPassword());
             prepareSteps.openSettingsPage();
@@ -49,7 +46,6 @@ public class LetterDeleteSettingTest {
             checkLetterDeleteSettingsSteps.openMainMailPage();
             checkLetterDeleteSettingsSteps.deleteLetterNumber(1);
             checkLetterDeleteSettingsSteps.checkAfterDeleteViewNextLetter();
-
         } finally {
             UserData.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
         }
@@ -71,11 +67,8 @@ public class LetterDeleteSettingTest {
             checkLetterDeleteSettingsSteps.openMainMailPage();
             checkLetterDeleteSettingsSteps.deleteLetterNumber(1);
             checkLetterDeleteSettingsSteps.checkAfterDeleteViewLettersList();
-
         } finally {
             UserData.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
         }
     }
-
-
 }
