@@ -22,7 +22,7 @@ public class UserData {
         private final LinkedBlockingQueue<LoginPassword> usersData = new LinkedBlockingQueue<>();
 
         EnumSingleton() {
-            File file = new File(Constants.FILE_NAME);
+            File file = new File(Constants.FILENAME);
             try {
                 List<String> lines = FileUtils.readLines(file, "UTF-8");
                 usersData.addAll(lines.stream()
@@ -38,7 +38,8 @@ public class UserData {
 
         public LoginPassword getNextLoginPassword() throws InterruptedException {
             LoginPassword loginPassword;
-            while((loginPassword=usersData.poll(Constants.WAIT_TIME_IN_MINUTES, TimeUnit.MINUTES)) == null){}
+            while ((loginPassword = usersData.poll(Constants.WAIT_TIME_IN_MINUTES, TimeUnit.MINUTES)) == null) {
+            }
             return loginPassword;
         }
 
@@ -48,7 +49,7 @@ public class UserData {
     }
 
     @Data
-    public static class LoginPassword implements Comparable<LoginPassword>{
+    public static class LoginPassword implements Comparable<LoginPassword> {
         private final String login;
         private final String password;
 

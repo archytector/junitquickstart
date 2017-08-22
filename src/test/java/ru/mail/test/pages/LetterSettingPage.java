@@ -38,6 +38,4 @@ public class LetterSettingPage extends PageObject {
     }
 
 
-
-
 }

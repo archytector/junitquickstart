@@ -39,19 +39,18 @@ public class BaseLetterSettingsTest {
         webdriver.get(baseUrl);
         UserData.LoginPassword currentLoginPassword = UserData.EnumSingleton.INSTANCE.getNextLoginPassword();
         try {
-        prepareSteps.login(currentLoginPassword.getLogin(), currentLoginPassword.getPassword());
-        prepareSteps.openSettingsPage();
-        prepareSteps.openLetterSettingsPage();
+            prepareSteps.login(currentLoginPassword.getLogin(), currentLoginPassword.getPassword());
+            prepareSteps.openSettingsPage();
+            prepareSteps.openLetterSettingsPage();
         } finally {
             UserData.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
         }
     }
 
     @After
-    public void stopDriver(){
+    public void stopDriver() {
         webdriver.close();
     }
-
 
 
 }

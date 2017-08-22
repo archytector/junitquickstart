@@ -7,19 +7,19 @@ import net.serenitybdd.core.pages.WebElementFacade;
 /**
  * Created by olga on 19.08.17.
  */
-public class CommonElenentsPage extends PageObject {
+public class CommonElementsPage extends PageObject {
     //Элементы верхнего меню, которое есть на каждой странице
 
-    @FindBy(id="portal-menu")
+    @FindBy(id = "portal-menu")
     private WebElementFacade portalMainMenu;
 
-    @FindBy(xpath="//*[@id='portal-menu']//span[text()='Ещё']")
+    @FindBy(xpath = "//*[@id='portal-menu']//span[text()='Ещё']")
     private WebElementFacade moreToolbarButton;
 
-    @FindBy(xpath=".//*[@id='portal-menu']//a/span[text()='Настройки']")
+    @FindBy(xpath = ".//*[@id='portal-menu']//a/span[text()='Настройки']")
     private WebElementFacade settingsToolbarItem;
 
-    @FindBy(xpath="//*[@id='portal-menu']//span[text()='Письма']")
+    @FindBy(xpath = "//*[@id='portal-menu']//span[text()='Письма']")
     private WebElementFacade lettersToolbarButton;
 
 
@@ -34,7 +34,6 @@ public class CommonElenentsPage extends PageObject {
     public void pressLetterBtn() {
         lettersToolbarButton.waitUntilClickable().click();
     }
-
 
 
 }

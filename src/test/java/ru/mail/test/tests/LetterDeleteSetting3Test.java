@@ -24,5 +24,5 @@ public class LetterDeleteSetting3Test extends BaseLetterSettingsTest {
         } finally {
             UserData.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
         }
-   }
+    }
 }

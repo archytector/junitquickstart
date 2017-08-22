@@ -1,7 +1,7 @@
 package ru.mail.test.steps;
 
 import net.thucydides.core.annotations.Step;
-import ru.mail.test.pages.CommonElenentsPage;
+import ru.mail.test.pages.CommonElementsPage;
 import ru.mail.test.pages.LetterSettingPage;
 import ru.mail.test.pages.LoginPage;
 import ru.mail.test.pages.SettingsPage;
@@ -12,7 +12,7 @@ import ru.mail.test.pages.SettingsPage;
 public class PrepareSteps {
 
     LoginPage loginPage;
-    CommonElenentsPage commonElenentsPage;
+    CommonElementsPage commonElementsPage;
     SettingsPage settingsPage;
     LetterSettingPage letterSettingPage;
 
@@ -25,8 +25,8 @@ public class PrepareSteps {
 
     @Step("Открыта страница настроек")
     public void openSettingsPage() {
-        commonElenentsPage.pressEnterBtn();
-        commonElenentsPage.pressSettingsBtn();
+        commonElementsPage.pressEnterBtn();
+        commonElementsPage.pressSettingsBtn();
         settingsPage.checkSettingsPageOpened();
     }
 

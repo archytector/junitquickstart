@@ -32,7 +32,7 @@ public class MainMailPage extends PageObject {
 
     public void rememberLetterHeader(int letterNumber) {
         letterNumber++;
-        letterHeader = lettersInList.findElement(By.cssSelector("div:nth-child(" + letterNumber+ ") > div > a")).getAttribute("data-subject");
+        letterHeader = lettersInList.findElement(By.cssSelector("div:nth-child(" + letterNumber + ") > div > a")).getAttribute("data-subject");
 
     }
 
@@ -45,14 +45,13 @@ public class MainMailPage extends PageObject {
         switch (option) {
             case "view next letter":
                 waitFor(answerButton);
-                Assert.assertEquals(letterHeader.replace(" ",""), letterHeaderText.getText().replace(" ",""));
+                Assert.assertEquals(letterHeader.replace(" ", ""), letterHeaderText.getText().replace(" ", ""));
                 break;
             case "view list letters":
                 checkMainMailPageOpened();
                 break;
         }
     }
-
 
 
 }

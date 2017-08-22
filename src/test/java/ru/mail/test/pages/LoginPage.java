@@ -10,13 +10,13 @@ import net.serenitybdd.core.pages.WebElementFacade;
 
 public class LoginPage extends PageObject {
 
-    @FindBy(id="mailbox__login")
+    @FindBy(id = "mailbox__login")
     private WebElementFacade loginInput;
 
-    @FindBy(id="mailbox__password")
+    @FindBy(id = "mailbox__password")
     private WebElementFacade passwordInput;
 
-    @FindBy(id="mailbox__auth__button")
+    @FindBy(id = "mailbox__auth__button")
     private WebElementFacade authButton;
 
 

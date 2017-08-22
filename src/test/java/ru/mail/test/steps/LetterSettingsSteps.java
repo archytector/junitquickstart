@@ -10,13 +10,13 @@ public class LetterSettingsSteps {
 
     LetterSettingPage letterSettingPage;
 
-    @Step("Выбран читбокс 'Переходить к следующему письму'")
+    @Step("Выбран чекбокс 'Переходить к следующему письму'")
     public void chooseGoToNextLetterCheckbox() {
         letterSettingPage.clickGoToNextLetterCheckbox();
     }
 
 
-    @Step("Выбран читбокс 'Переходить к списку писем'")
+    @Step("Выбран чекбокс 'Переходить к списку писем'")
     public void chooseGoToLettersListCheckbox() {
         letterSettingPage.clickGoToLettersListCheckbox();
     }

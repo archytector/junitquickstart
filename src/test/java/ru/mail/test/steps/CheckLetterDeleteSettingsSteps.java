@@ -1,7 +1,7 @@
 package ru.mail.test.steps;
 
 import net.thucydides.core.annotations.Step;
-import ru.mail.test.pages.CommonElenentsPage;
+import ru.mail.test.pages.CommonElementsPage;
 import ru.mail.test.pages.MainMailPage;
 
 /**
@@ -9,12 +9,12 @@ import ru.mail.test.pages.MainMailPage;
  */
 public class CheckLetterDeleteSettingsSteps {
 
-    CommonElenentsPage commonElenentsPage;
+    CommonElementsPage commonElementsPage;
     MainMailPage mainMailPage;
 
     @Step("Переход на страницу со списком писем")
     public void openMainMailPage() {
-        commonElenentsPage.pressLetterBtn();
+        commonElementsPage.pressLetterBtn();
         mainMailPage.checkMainMailPageOpened();
     }
 
