@@ -20,17 +20,17 @@ import java.io.IOException;
  * Created by olga on 19.08.17.
  */
 @RunWith(SerenityRunner.class)
-public class BaseLetterSettingsTest {
+public class BaseLetterSettings {
 
     @Managed(uniqueSession = true)
-    public WebDriver webdriver;
+    protected WebDriver webdriver;
 
     @Steps
-    public PrepareSteps prepareSteps;
+    protected PrepareSteps prepareSteps;
     @Steps
-    public LetterSettingsSteps latterSettingsSteps;
+    protected LetterSettingsSteps latterSettingsSteps;
     @Steps
-    public CheckLetterDeleteSettingsSteps checkLetterDeleteSettingsSteps;
+    protected CheckLetterDeleteSettingsSteps checkLetterDeleteSettingsSteps;
 
 
     @Before

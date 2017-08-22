@@ -9,7 +9,7 @@ import ru.mail.test.utils.UserData;
  * Created by olga on 19.08.17.
  */
 
-public class LetterDeleteSetting3Test extends BaseLetterSettingsTest {
+public class LetterDeleteSetting3Test extends BaseLetterSettings {
 
     @Test
     @Title("Проверка функциональности 'После удаления письма - Переходить к списку писем'")
