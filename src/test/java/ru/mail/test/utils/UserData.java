@@ -19,6 +19,7 @@ public class UserData {
     public enum EnumSingleton {
         INSTANCE();
 
+        private static final int WAIT_TIME_IN_MINUTES = 1;
         private final LinkedBlockingQueue<LoginPassword> usersData = new LinkedBlockingQueue<>();
 
         EnumSingleton() {
@@ -38,7 +39,7 @@ public class UserData {
 
         public LoginPassword getNextLoginPassword() throws InterruptedException {
             LoginPassword loginPassword;
-            while ((loginPassword = usersData.poll(Constants.WAIT_TIME_IN_MINUTES, TimeUnit.MINUTES)) == null) {
+            while ((loginPassword = usersData.poll(WAIT_TIME_IN_MINUTES, TimeUnit.MINUTES)) == null) {
             }
             return loginPassword;
         }

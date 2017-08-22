@@ -20,7 +20,7 @@ import java.io.IOException;
  * Created by olga on 19.08.17.
  */
 @RunWith(SerenityRunner.class)
-public class BaseLetterSettings {
+public class TestBase {
 
     @Managed(uniqueSession = true)
     protected WebDriver webdriver;

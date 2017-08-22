@@ -45,7 +45,7 @@ public class MainMailPage extends PageObject {
         switch (option) {
             case "view next letter":
                 waitFor(answerButton);
-                Assert.assertEquals(letterHeader.replace(" ", ""), letterHeaderText.getText().replace(" ", ""));
+                Assert.assertEquals("Не произошел переход к следующему письму",letterHeader.replace(" ", ""), letterHeaderText.getText().replace(" ", ""));
                 break;
             case "view list letters":
                 checkMainMailPageOpened();

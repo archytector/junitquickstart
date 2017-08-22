@@ -6,5 +6,4 @@ package ru.mail.test.utils;
 public class Constants {
     public static final String BASE_URL = "https://mail.ru/";
     public static final String FILENAME = "src/test/resourses/test_logins.txt";
-    public static final int WAIT_TIME_IN_MINUTES = 1;
 }

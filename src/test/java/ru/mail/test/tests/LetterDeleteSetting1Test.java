@@ -9,11 +9,11 @@ import ru.mail.test.utils.UserData;
  * Created by olga on 19.08.17.
  */
 
-public class LetterDeleteSetting3Test extends BaseLetterSettings {
+public class LetterDeleteSetting1Test extends TestBase {
 
     @Test
     @Title("Проверка функциональности 'После удаления письма - Переходить к списку писем'")
-    public void checkDeleteLetterOptions3() throws InterruptedException {
+    public void checkDeleteLetterOptions2() throws InterruptedException {
         UserData.LoginPassword currentLoginPassword = UserData.EnumSingleton.INSTANCE.getNextLoginPassword();
         try {
             latterSettingsSteps.chooseGoToLettersListCheckbox();
