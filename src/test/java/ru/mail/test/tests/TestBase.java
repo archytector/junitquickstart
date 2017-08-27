@@ -11,7 +11,7 @@ import ru.mail.test.steps.CheckLetterDeleteSettingsSteps;
 import ru.mail.test.steps.LetterSettingsSteps;
 import ru.mail.test.steps.PrepareSteps;
 import ru.mail.test.utils.Constants;
-import ru.mail.test.utils.UserData;
+import ru.mail.test.utils.UserDataService;
 
 import java.io.IOException;
 
@@ -32,25 +32,22 @@ public class TestBase {
     @Steps
     protected CheckLetterDeleteSettingsSteps checkLetterDeleteSettingsSteps;
 
-    UserData.LoginPassword currentLoginPassword;
+    UserDataService.LoginPassword currentLoginPassword;
 
     @Before
     public void prepareData() throws InterruptedException, IOException {
-        String baseUrl = Constants.BASE_URL;
-        webdriver.get(baseUrl);
-        currentLoginPassword = UserData.EnumSingleton.INSTANCE.getNextLoginPassword();
+        webdriver.get(Constants.BASE_URL);
+
+        currentLoginPassword = UserDataService.getNextLoginPassword();
+
         prepareSteps.login(currentLoginPassword.getLogin(), currentLoginPassword.getPassword());
         prepareSteps.openSettingsPage();
         prepareSteps.openLetterSettingsPage();
     }
 
-
-
     @After
-    public void stopDriver() {
+    public void releaseData() {
         webdriver.quit();
-        UserData.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
+        UserDataService.freeLoginPasword(currentLoginPassword);
     }
-
-
 }
