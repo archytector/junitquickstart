@@ -32,24 +32,24 @@ public class TestBase {
     @Steps
     protected CheckLetterDeleteSettingsSteps checkLetterDeleteSettingsSteps;
 
+    UserData.LoginPassword currentLoginPassword;
 
     @Before
     public void prepareData() throws InterruptedException, IOException {
         String baseUrl = Constants.BASE_URL;
         webdriver.get(baseUrl);
-        UserData.LoginPassword currentLoginPassword = UserData.EnumSingleton.INSTANCE.getNextLoginPassword();
-        try {
-            prepareSteps.login(currentLoginPassword.getLogin(), currentLoginPassword.getPassword());
-            prepareSteps.openSettingsPage();
-            prepareSteps.openLetterSettingsPage();
-        } finally {
-            UserData.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
-        }
+        currentLoginPassword = UserData.EnumSingleton.INSTANCE.getNextLoginPassword();
+        prepareSteps.login(currentLoginPassword.getLogin(), currentLoginPassword.getPassword());
+        prepareSteps.openSettingsPage();
+        prepareSteps.openLetterSettingsPage();
     }
+
+
 
     @After
     public void stopDriver() {
-        webdriver.close();
+        webdriver.quit();
+        UserData.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
     }
 
 
