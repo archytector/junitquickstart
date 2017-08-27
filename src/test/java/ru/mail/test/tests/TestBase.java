@@ -32,7 +32,7 @@ public class TestBase {
     @Steps
     protected CheckLetterDeleteSettingsSteps checkLetterDeleteSettingsSteps;
 
-    UserDataService.LoginPassword currentLoginPassword;
+    private UserDataService.LoginPassword currentLoginPassword;
 
     @Before
     public void prepareData() throws InterruptedException, IOException {
@@ -48,6 +48,6 @@ public class TestBase {
     @After
     public void releaseData() {
         webdriver.quit();
-        UserDataService.freeLoginPasword(currentLoginPassword);
+        UserDataService.freeLoginPassword(currentLoginPassword);
     }
 }

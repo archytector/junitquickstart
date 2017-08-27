@@ -6,7 +6,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ArrayBlockingQueue;
 
 import static java.util.stream.Collectors.toList;
 
@@ -15,18 +15,22 @@ import static java.util.stream.Collectors.toList;
  */
 public class UserDataService {
 
-    private static final LinkedBlockingQueue<LoginPassword> usersData = new LinkedBlockingQueue<>();
+    private static final ArrayBlockingQueue<LoginPassword> usersData;
 
     static {
         File file = new File(Constants.FILENAME);
         try {
             List<String> lines = FileUtils.readLines(file, "UTF-8");
-            usersData.addAll(lines.stream()
-                .map(s -> {
-                    String[] loginPasswordPair = s.split(" +");
-                    return new LoginPassword(loginPasswordPair[0], loginPasswordPair[1]);
-                })
-                .collect(toList()));
+            usersData = new ArrayBlockingQueue<>(
+                lines.size(),
+                false,
+                lines.stream()
+                    .map(s -> {
+                        String[] loginPasswordPair = s.split(" +");
+                        return new LoginPassword(loginPasswordPair[0], loginPasswordPair[1]);
+                    })
+                    .collect(toList())
+            );
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -36,8 +40,12 @@ public class UserDataService {
         return usersData.take();
     }
 
-    public static void freeLoginPasword(LoginPassword loginPassword) {
-        usersData.add(loginPassword);
+    public static void freeLoginPassword(LoginPassword loginPassword) {
+        try {
+            usersData.put(loginPassword);
+        } catch (InterruptedException e) {
+            System.out.println("Thread is interrupted");
+        }
     }
 
     @Data
