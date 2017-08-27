@@ -2,7 +2,7 @@ package ru.mail.test.tests;
 
 import net.thucydides.core.annotations.Title;
 import org.junit.Test;
-import ru.mail.test.utils.UserData;
+import ru.mail.test.utils.UserDataService;
 
 
 /**
@@ -14,7 +14,7 @@ public class LetterDeleteSetting1Test extends TestBase {
     @Test
     @Title("Проверка функциональности 'После удаления письма - Переходить к списку писем'")
     public void checkDeleteLetterOptions2() throws InterruptedException {
-        UserData.LoginPassword currentLoginPassword = UserData.EnumSingleton.INSTANCE.getNextLoginPassword();
+        UserDataService.LoginPassword currentLoginPassword = UserDataService.EnumSingleton.INSTANCE.getNextLoginPassword();
         try {
             latterSettingsSteps.chooseGoToLettersListCheckbox();
             latterSettingsSteps.saveChanges();
@@ -22,7 +22,7 @@ public class LetterDeleteSetting1Test extends TestBase {
             checkLetterDeleteSettingsSteps.deleteLetterNumber(1);
             checkLetterDeleteSettingsSteps.checkAfterDeleteViewLettersList();
         } finally {
-            UserData.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
+            UserDataService.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
         }
     }
 }
