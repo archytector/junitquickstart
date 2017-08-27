@@ -49,13 +49,8 @@ public class UserDataService {
     }
 
     @Data
-    public static class LoginPassword implements Comparable<LoginPassword> {
+    public static class LoginPassword {
         private final String login;
         private final String password;
-
-        @Override
-        public int compareTo(LoginPassword loginPassword) {
-            return this.hashCode() - loginPassword.hashCode();
-        }
     }
 }
