@@ -14,15 +14,10 @@ public class LetterDeleteSetting2Test extends TestBase {
     @Test
     @Title("Проверка функциональности 'После удаления письма - Переходить к следующему письму'")
     public void checkDeleteLetterOptions3() throws InterruptedException {
-        UserDataService.LoginPassword currentLoginPassword = UserDataService.EnumSingleton.INSTANCE.getNextLoginPassword();
-        try {
             latterSettingsSteps.chooseGoToNextLetterCheckbox();
             latterSettingsSteps.saveChanges();
             checkLetterDeleteSettingsSteps.openMainMailPage();
             checkLetterDeleteSettingsSteps.deleteLetterNumber(1);
-            checkLetterDeleteSettingsSteps.checkAfterDeleteViewNextLetter();
-        } finally {
-            UserDataService.EnumSingleton.INSTANCE.freeLoginPasword(currentLoginPassword);
-        }
-    }
+            checkLetterDeleteSettingsSteps.checkAfterDeleteViewNextLetter();}
+
 }

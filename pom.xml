@@ -82,7 +82,7 @@
                         <include>**/*Test.java</include>
                     </includes>
 
-                    <parallel>all</parallel>
+                    <parallel>classes</parallel>
                     <threadCount>2</threadCount>
                     <parallelOptimized>true</parallelOptimized>
 
