@@ -17,10 +17,6 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <serenity.version>1.5.3</serenity.version>
         <serenity.maven.version>1.5.3</serenity.maven.version>
-        <!--<webdriver.driver>firefox</webdriver.driver>-->
-        <!--<webdriver.firefox.driver>geckodriver</webdriver.firefox.driver>-->
-        <!--<surefire.rerunFailingTestsCount>1</surefire.rerunFailingTestsCount>-->
-        <surefire.forkNumber>1</surefire.forkNumber>
     </properties>
 
     <dependencies>
@@ -65,15 +61,6 @@
     </dependencies>
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.2</version>
-                <configuration>
-                    <verbose>true</verbose>
-                    <fork>true</fork>
-                </configuration>
-            </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.20</version>
